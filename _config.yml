@@ -1,10 +1,16 @@
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
+<<<<<<< HEAD
 #permalink:           pretty
 permalink: /blog/:year/:month/:day/:title/
 relative_permalinks: false
 encoding: utf-8
+=======
+permalink:           pretty
+relative_permalinks: true
+future:              true
+>>>>>>> ce3b2c6da0481f2d54c1895a278a3282873cb124
 
 # Setup
 title:               My Website
