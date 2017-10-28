@@ -3,7 +3,7 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-# title:            tower120's </br> blog
+#title:           tower120
 description:      'My thoughts and findings in field of programming.'
 url:              https://tower120.github.io
 baseurl:          # the optional subpath of your site, e.g. "/blog"

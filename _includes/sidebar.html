@@ -4,12 +4,14 @@
       <a href="{{ site.baseurl }}/">
         {% unless page.url == "/" %}
           <span class="back-arrow icon">{% include svg/back-arrow.svg %}</span>
-        {% endunless %}
-        {{ site.title }}
+          <span class="back-arrow">Home</span>
+        {% endunless %} 
+        <!-- {{ site.title }} -->
       </a>
     </{% if page.layout == "index" %}h1{% else %}div{% endif %}>
     <p class="lead">{{ site.description }}</p>
   </header>
+
   {% include sidebar-nav-links.html %}
 
   {% if site.version %}
