@@ -2,6 +2,7 @@
 layout: post
 title: Functional std::lock, for complex cases
 category: thread-safety
+tag: [thread-safety, project-threading]
 ---
 
 ```c++
@@ -28,10 +29,9 @@ struct DataB{
 
 Consider that in `A` and `B`, all values accessed under lock.
 
-Now, we want to swap `A::value`, with `B::value`. To do this, we need locked both `A` and `B`. 
+Now, we want to swap `A::value`, with `B::value`. To do this, we need to lock both `A` and `B`. 
 
-In `swap_A_B_values()` , we first need to lock A, then B.
-
+In `swap_A_B_values()` , we first need to lock A, then B.  
 In `swap_B_A_values()` , we first need to lock B, then A. 
 
 If we simply lock them from different threads, we'll get dead-lock.
@@ -57,8 +57,7 @@ void DataA::swap_A_B_values() {
 
 [`lock_functional`][1] a little bit unsafe, because it may occur in half-locked state, when one of the closures return `nullptr`. But sometimes, that half-locked state may be enough.
 
-
-`lock_all_functional` return `std::optional< std::tuple< std::unique_lock > >` . It always have all locks in locked state, when `std::optional` have value.
+[`lock_all_functional`][1] return `std::optional< std::tuple< std::unique_lock > >` . It always have all locks in locked state, when `std::optional` have value.
 
 ```c++
 void DataA::swap_B_A_values() {
