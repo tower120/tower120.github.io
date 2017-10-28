@@ -3,6 +3,7 @@ layout: post
 title: Functional std::lock, for complex cases
 category: thread-safety
 tag: [thread-safety, project-threading]
+excerpt_separator: <!--more-->
 ---
 
 ```c++
@@ -26,10 +27,9 @@ struct DataB{
   void swap_B_A_values();
 } data_b;
 ```
-
-Consider that in `A` and `B`, all values accessed under lock.
-
-Now, we want to swap `A::value`, with `B::value`. To do this, we need to lock both `A` and `B`. 
+ 
+We want to swap `A::value`, with `B::value`. Consider that in `A` and `B`, all values accessed under lock. To swap them, we need to lock both `A` and `B`. Looks like a job for `std::lock` ?..
+<!--more-->
 
 In `swap_A_B_values()` , we first need to lock A, then B.  
 In `swap_B_A_values()` , we first need to lock B, then A. 
