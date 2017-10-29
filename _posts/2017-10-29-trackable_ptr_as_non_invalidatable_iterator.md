@@ -5,7 +5,7 @@ tag: [project-trackable-ptr]
 excerpt_separator: <!--more-->
 ---
 
-Thou it is obvious, that using [`trackable_ptr`][1] allow  container's element access without need of iterator,or index. It may not come at first glance, that you can use [`trackable_ptr`][1] to do same things, you do with regular iterator (or index access) of any container with contiguous elements storage, like `std::vector`.
+Though it is obvious, that using [`trackable_ptr`][1] allow  container's element access without need of iterator,or index. It may not come at first glance, that you can use [`trackable_ptr`][1] to do same things, you do with regular iterator (or index access) of any container with contiguous elements storage, like `std::vector`.
 <!--more-->
 
 `std::vector` being contiguous, allow us, to calculate index element from its pointer:
