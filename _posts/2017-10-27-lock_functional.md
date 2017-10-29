@@ -27,7 +27,7 @@ struct DataB{
   void swap_B_A_values();
 } data_b;
 ```
- 
+
 We want to swap `A::value`, with `B::value`. Consider that in `A` and `B`, all values accessed under lock. To swap them, we need to lock both `A` and `B`. Looks like a job for `std::lock` ?..
 <!--more-->
 
@@ -70,5 +70,6 @@ void DataA::swap_B_A_values() {
 }
 ```
 
+[Source code][1]
 
 [1]: https://github.com/tower120/threading/blob/master/src/threading/lock_functional.h
