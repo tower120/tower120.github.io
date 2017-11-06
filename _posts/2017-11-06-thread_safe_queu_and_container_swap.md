@@ -1,6 +1,6 @@
 ---
 layout: post
-title: thread-safe queu and container swap
+title: thread-safe queue and container swap
 tag: [thread-safety]
 excerpt_separator: <!--more-->
 ---
