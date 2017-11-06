@@ -47,7 +47,7 @@ struct some_queu{
 ```
 
 Instead of read `list` under lock, we just swap it with empty one.
-And now we have non-blocking read and ordered queu. We always have only one short-timed lock on read.
+And now we have non-blocking read and ordered queue. We always have only one short-timed lock on read.
 
 This is obviously MUCH faster than locking each element one by one or even locking whole container.
 
