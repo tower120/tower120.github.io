@@ -9,7 +9,7 @@ Consider that you need queue with thread-safe `push_back` and `pop_front` operat
 
 ```c++
 template<class Message>
-struct some_queu{
+struct some_queue{
     void process(closure);
     void push(Message&& message);
 }
@@ -21,7 +21,7 @@ You may do this relativley efficently with just `std::vector` / `std::deque`, an
 
 ```c++
 template<class Message>
-struct some_queu{
+struct some_queue{
     std::vector<Message> list;      // std::deque will work too
     std::mutex lock;
 
