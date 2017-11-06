@@ -5,7 +5,7 @@ tag: [thread-safety]
 excerpt_separator: <!--more-->
 ---
 
-Consider that you need queu with thread-safe `push_back` and `pop_front` operations. Also, consider that you want to consume all available elements, not just one. For example you need this for your home-grown LoopThreadExecutor, or some sort of pending queue:
+Consider that you need queue with thread-safe `push_back` and `pop_front` operations. Also, consider that you want to consume all available elements, not just one. For example you need this for your home-grown LoopThreadExecutor, or some sort of pending queue:
 
 ```c++
 template<class Message>
