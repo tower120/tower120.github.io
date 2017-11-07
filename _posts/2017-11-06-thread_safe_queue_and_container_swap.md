@@ -94,3 +94,50 @@ With this we reuse allocated memory in containers.
 #### P.S.
 
 More efficient than this may be [flat combining](http://mcg.cs.tau.ac.il/papers/spaa2010-fc.pdf) queue, for example one from the [cds library](https://github.com/khizmax/libcds). Though, I didn't compare them ;).
+
+## Update
+
+As [tvaneerd pointed out](https://www.reddit.com/r/cpp/comments/7b3boa/threadsafe_queue_and_container_swap/dpfsctc/), we can have 2-in-1 interface, with this:
+
+```c++
+template<class Message, class Lock = std::mutex>
+class queue{
+    std::vector<Message> list;
+    Lock lock;
+public:    
+    void readAll(std::vector<Message>& container){
+        std::unique_lock l(lock);
+        std::swap(container, list);
+        list.clear();
+    }
+    
+    template<class ...Args>
+    void emplace_back(Args&&...args){
+       std::unique_lock l(lock);
+       list.emplace_back(std::forward<Args>(args)...);
+    }
+}
+```
+
+Then, if we read always on the same thread, we do:
+```c++
+   queue<Message> messages;
+   std::vector<Message> process_list;   
+   
+   void process(Closure&& closure){
+      messages.readAll(process_list);
+      for (auto& e : process_list) closure(e);
+   }
+```
+
+If we can read from different threads:
+```c++
+   queue<Message> messages;
+   
+   void process(Closure&& closure){
+      std::vector<Message> process_list;   
+      messages.readAll(process_list);
+      
+      for (auto& e : process_list) closure(e);
+   }
+```
