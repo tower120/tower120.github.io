@@ -56,7 +56,7 @@ struct TextView : ITextView, View {
 };
 ```
 
-And that's ok. If we forget something to forward / implement, compiler will remind it. But if we have, like +8 functions in each level, most part of our classes will consists from forward functions, the higher inheritance level, the more functions we should forward.
+And that's ok. If we forget something to forward / implement, compiler will remind it. But if we have, like +8 functions in each level, most part of our classes will consists from forward functions. The higher inheritance level, the more functions we should forward.
 
 #### Forwarding with macro
 
@@ -140,6 +140,6 @@ struct TextView : IView::Forward<View, ITextView> {
 
 [Live example](http://coliru.stacked-crooked.com/a/773caa7443ece2bf)
 
-You still need to write simple forward code, for each function in your interface. But now only once per interface. [This can be completly automated, if you work with clang compiler fork  with experimental reflection/meta-programming support]
+You still need to write simple forward code, for each function in your interface. But now only once per interface. *[This can be completly automated, if you work with clang compiler fork  with experimental reflection/meta-programming support]*
 
 Size-wise, solution equivalent to class with virtual-inheritance. Your interface classes MUST be zero-size.
