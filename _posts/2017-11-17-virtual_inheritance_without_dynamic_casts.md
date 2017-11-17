@@ -5,7 +5,7 @@ tag: [oop]
 excerpt_separator: <!--more-->
 ---
 
-**Motivation**. Extend class, that implement interface `I`, with interface derived from `I`, without virtual inheritance.
+**Motivation**. Extend class, that implement interface `I`, with interface derived from `I`, without virtual inheritance. C++ does not allow to do `static_cast` downcast for class with virtual inheritance.
 
 Have this:
 
@@ -27,15 +27,20 @@ struct View : virtual IView {
 struct TextView : virtual ITextView, virtual View {
     virtual void setText() override {
         std::cout << "setting text!" << std::endl;
-    };
+    }
 };
 ```
 
 Without performance overhead of this:
 
 ```c++
-IView* view;
-ITextView* text_view = dynamic_cast<ITextView*>(view);
+// can do upcast with static_cast
+TextView text; 
+ITextView* i_text = static_cast<ITextView*>(&text);
+IView* i_view = static_cast<IView*>(i_text);
+
+// (!) but must use dynamic_cast for downcast
+ITextView* text_view = dynamic_cast<ITextView*>(i_view);
 ```
 
 <!--more-->
