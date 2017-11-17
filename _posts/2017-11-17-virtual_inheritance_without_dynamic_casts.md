@@ -5,7 +5,7 @@ tag: [oop]
 excerpt_separator: <!--more-->
 ---
 
-**Motivation**. Extend class, that implement interface with interface derived from it, without virtual inheritance.
+**Motivation**. Extend class, that implement interface `I`, with interface derived from `I`, without virtual inheritance.
 
 Have this:
 
