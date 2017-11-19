@@ -148,3 +148,41 @@ struct TextView : IView::Forward<View, ITextView> {
 You still need to write simple forward code, for each function in your interface. But now only once per interface. *[This can be completly automated, if you work with clang compiler fork  with experimental reflection/meta-programming support]*
 
 Size-wise, solution equivalent to class with virtual-inheritance. Your interface classes MUST be zero-size.
+
+---
+
+## Update
+
+As [NotAYakk pointed out](https://www.reddit.com/r/cpp/comments/7dl9np/virtual_inheritance_without_dynamic_cast/dpz0gxc/?st=ja6lwazt&sh=498dadb8), there is more efficient solution:
+
+```c++
+struct IView{
+    virtual void setOnClick() = 0;
+};
+struct ITextView : IView {
+    virtual void setText() = 0;
+};
+
+// implementation
+template<class Interface = IView>
+struct View : Interface {
+    virtual void setOnClick() override {
+        std::cout << "setting OnClick!" << std::endl;
+    }
+};
+
+template<class Interface = ITextView>
+struct TextView : View<Interface> {
+    virtual void setText() override {
+        std::cout << "setting text!" << std::endl;
+    }
+};
+```
+
+With c++17 [class template argument deduction](http://en.cppreference.com/w/cpp/language/class_template_argument_deduction) use as:
+
+```c++
+TextView text;
+IView* i = &text;
+ITextView* i_tv = static_cast<ITextView*>(i);
+```
