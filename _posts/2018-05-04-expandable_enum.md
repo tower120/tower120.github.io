@@ -13,8 +13,8 @@ One could just use `int` in conjunction with counter. But it would not be typesa
 struct Shape : Enum<Shape, char>{};
 
 namespace Shapes{
-    static const AddEnum<Shape> circle;
-    static const AddEnum<Shape> triangle;
+    inline const AddEnum<Shape> circle;
+    inline const AddEnum<Shape> triangle;
 }
 ```
 
@@ -24,7 +24,7 @@ latter somewhere...
 #include "Shape.h"
 
 namespace Shapes{
-    static const AddEnum<Shape> square;
+    inline const AddEnum<Shape> square;
 }
 ```
 
@@ -51,14 +51,14 @@ Alternatively it can look like:
 namespace Shape{
     struct type : Enum<type, char>{};
 
-    static const AddEnum<type> circle;
-    static const AddEnum<type> triangle;
+    inline const AddEnum<type> circle;
+    inline const AddEnum<type> triangle;
 }
 
 ...
 
 namespace Shape{
-    static const AddEnum<type> square;
+    inline const AddEnum<type> square;
 }
 
 ...
@@ -74,7 +74,7 @@ void draw(Shape::type shape){
 ```
 
 
-[Live example](http://coliru.stacked-crooked.com/a/27aa4e54b80d3104)
+[Live example](http://coliru.stacked-crooked.com/a/4c0d17599fde7b5d)
 
 ---
 
