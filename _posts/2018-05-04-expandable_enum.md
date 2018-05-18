@@ -28,6 +28,8 @@ namespace Shapes{
 }
 ```
 
+ <!--more-->
+ 
 C++ doesn't have concept of class extending (you can't add class members without inheritance), like [C# extension methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods), or [Swift extensions](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html). So we utilize namespaces for this purpose.
 
 Usage:
