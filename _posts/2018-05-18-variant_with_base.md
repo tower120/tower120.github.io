@@ -33,7 +33,7 @@ Have direct access to common base class of `std::variant`.
 ```c++
     variant_w_base<Base, std::variant<A,B>> var;
     Base& base = *var.base();
-    Base& base = std::get<Base>(var);
+    Base& base = var.get<Base>();
 ```
 [source code](https://github.com/tower120/variant_w_base)
 <!--more-->
@@ -61,18 +61,7 @@ To allow base class access, we store pointer to base.
 
 Each time value changed, copied, moved we update base class pointer.
 
-In order to work with `std::visit` , `std::get`, `std::get_if`, etc. we do specialize function templates. Like:
-
-```c++
-namespace std{
-
-    template<class Visitor, class Base, class Variant>
-    decltype(auto) visit(Visitor&& vis, NoteEditor::utils::variant_w_base<Base, Variant>& var){
-        return std::visit(std::forward<Visitor>(vis), var.variant());
-    };
-    
-}
-```
+Interface similar to `std::variant`, but all free functions are members.
 
 <h2>Performance measurements</h2>
 
