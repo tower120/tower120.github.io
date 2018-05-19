@@ -51,9 +51,9 @@ To allow base class access, we store pointer to base.
                 using Arg = std::decay_t<decltype(arg)>;
                 if constexpr (std::is_same_v<Arg, std::monostate>){
                     return nullptr;
+                } else {
+                	return static_cast<Base*>(&arg);
                 }
-
-                return static_cast<Base*>(&arg);
             }, m_variant);
         }
     }
@@ -91,15 +91,15 @@ P.S. It is also possible to use it as virtual class  local storage, if you know 
 ```c++
 struct Interface{
     virtual int get() = 0;
-}
+};
 struct A : Interface{
     virtual int get() override{ return 1; }
-}
+};
 struct B : Interface{
     virtual int get() override{ return 2; }
-}
+};
 
-variant_w_base<Interface, std::optional<std::monostate, A, B>> var;
+variant_w_base<Interface, std::variant<std::monostate, A, B>> var;
 
 var = A();
 Interface* inteface = var.base();
