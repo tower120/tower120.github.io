@@ -93,10 +93,10 @@ struct Interface{
     virtual int get() = 0;
 }
 struct A : Interface{
-    virtual int do_smthg() override{ return 1; }
+    virtual int get() override{ return 1; }
 }
 struct B : Interface{
-    virtual int do_smthg() override{ return 2; }
+    virtual int get() override{ return 2; }
 }
 
 variant_w_base<Interface, std::optional<std::monostate, A, B>> var;
