@@ -52,7 +52,7 @@ To allow base class access, we store pointer to base.
                 if constexpr (std::is_same_v<Arg, std::monostate>){
                     return nullptr;
                 } else {
-                	return static_cast<Base*>(&arg);
+                    return static_cast<Base*>(&arg);
                 }
             }, m_variant);
         }
